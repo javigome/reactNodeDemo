@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NewsItemListing from '../presentation/NewsItemListing';
 import { connect } from 'react-redux'
-import { fetchNews } from '../../actions/actions'
+import { fetchNews } from '../../actions/newsActions'
 
 
 class News extends Component {
@@ -15,7 +15,7 @@ class News extends Component {
         const newsItem =  this.props.news.map((news, i) =>{
             return(<li key={i}> <NewsItemListing data={news} /></li> );
             });
-            console.log('items', newsItem);
+            console.log('items', this.props);
 
         return (
             <div>
@@ -26,12 +26,16 @@ class News extends Component {
         )
     }
 }
-
+//specify exactly which slice of the state we want to provide to our component
 const mapStateToProps = state => {
     return {
         news: state.news.news
+
     }
 }
 
-
+//connect() allows us to specify which data we are listening to(through mapStateToProps), and which component we are providing data.
+//Connect the data in mapStateToProps()(the items portion of the state) to the (News) component.
+ //Abd the News component can access the state with this.props.news
+ //
 export default connect(mapStateToProps)(News)

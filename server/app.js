@@ -4,6 +4,8 @@ const newsRoute = require('./routes/news');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var authRoute = require('./routes/auth');
+
 
 require('dotenv').config()
 
@@ -29,9 +31,10 @@ app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', routes);
+app.use('/user', authRoute);
 
 app.use('/news', newsRoute);
+
 
 app.listen(PORT, function() {
     console.log(`Listening on port ${PORT}`)

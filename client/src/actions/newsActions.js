@@ -21,6 +21,8 @@ function newsItemLoading(){
 
 export function fetchNews(){
     return dispatch => {
+        console.log();
+
         return fetch(`/news`)
         .then( (response) => response.json() )
         .then( (data) => dispatch(newsReceived(data.data)))
@@ -30,6 +32,8 @@ export function fetchNews(){
 
 export function fetchNewsItem(id){
     return dispatch => {
+        dispatch(newsItemLoading());
+
         return fetch(`/news/${id}`)
         .then( (response) => response.json() )
         .then( (data) => dispatch(newsItemReceived(data.data)))
@@ -46,7 +50,7 @@ export function submitNewsStory(data){
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify(data),
-            mode: 'cors'
-        }) .catch( (e) => console.log(e) );
+            mode: 'cors'})
+            .catch( (e) => console.log(e) );
     }
 }
