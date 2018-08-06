@@ -1,1 +1,1 @@
-Beck React Node tutorial
+ React / Redux Node MongoD  tutorial
