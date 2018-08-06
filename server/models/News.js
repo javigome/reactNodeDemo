@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const CommentSchema = require('./Comment').schema;
 
 const NewsSchema = new mongoose.Schema({
     title: String,
@@ -12,7 +13,8 @@ const NewsSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: new Date()
-    }
+    },
+    comments: [CommentSchema]
 });
 
 mongoose.model('News', NewsSchema);

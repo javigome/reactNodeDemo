@@ -1,4 +1,5 @@
 const News = require('../models/News');
+const Comment = require('../models/Comment')
 
 module.exports = {
 
@@ -29,5 +30,27 @@ module.exports = {
             }
             callback(null, results);
         })
+    },
+     createComment: function(id, username, body, callback){
+        News.findById(id, function(err, result){
+            if(err){
+                callback(err, null);
+                return;
+            }
+
+            var comment = new Comment({username: username, body: body});
+
+            result.comments.push(comment);
+
+            result.save(function(err, commentResult){
+                if(err){
+                    callback(err, null);
+                    return;
+                }
+
+                callback(null, commentResult);
+            });
+        });
+
     }
 }

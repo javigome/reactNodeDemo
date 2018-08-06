@@ -8,6 +8,7 @@ import Layout from './components/layouts/Layouts';
 import store from './stores/store';
 import NewsArticle from './components/containers/NewsArticle';
 import NewsSubmit from './components/containers/NewsSubmit';
+import Authentication from './components/containers/Authentication';
 
 
 class App extends Component {
@@ -20,6 +21,8 @@ class App extends Component {
                     <Route path="/about" component={About} />
                     <Route path="/news/:id" component={NewsArticle} />
                     <Route path='/submit' component={NewsSubmit}/>
+                    <Route path='/authentication' component={Authentication}/>
+
                 </Layout>
             </BrowserRouter>
           </Provider>

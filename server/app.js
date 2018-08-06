@@ -5,6 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var authRoute = require('./routes/auth');
+const authCheckMiddleware = require('./middleware/authCheck');
+
 
 
 require('dotenv').config()
@@ -31,8 +33,11 @@ app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/', routes);
+
 app.use('/user', authRoute);
 
+app.use('/news/:id/comment', authCheckMiddleware);
 app.use('/news', newsRoute);
 
 

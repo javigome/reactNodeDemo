@@ -36,6 +36,7 @@ class Login extends Component{
                 Password <input onChange={this.updateDetails} id="password" type="password" placeholder= "Password"/><br/>
                 <button onClick={this.login}>Go</button>
             </div>
+        )
     }
 }
 
